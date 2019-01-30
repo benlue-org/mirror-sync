@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        MIRROR_PATH             = '/mnt/los-mirror/LineageOS/android.git'
+        MIRROR_PATH             = '/mnt/los-mirror'
     }
     stages {
         stage('Preparation') {

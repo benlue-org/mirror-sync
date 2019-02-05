@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Preparation') {
             steps {
-                dir("/mnt/los-mirror/") {
+                dir("${MIRROR_PATH}") {
                     sh '''#!/bin/bash
                        set -x
                        mkdir -p ~/bin
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Repo Sync') {
             steps {
-                dir("/mnt/los-mirror/") {
+                dir("${MIRROR_PATH}") {
                     sh '''#!/bin/bash
                        set -x
                        source ~/.profile

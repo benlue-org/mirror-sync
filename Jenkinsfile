@@ -11,11 +11,15 @@ pipeline {
                 sh 'curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo'
             }
         }
-        stage('Code syncing') {
+        stage('Repo Sync') {
             steps {
-                echo 'Sync Mirror Repo'
-                dir("${MIRROR_PATH}") {
-                sh '''#!/bin/bash\nset -x\nsource ~/.profile\nrepo sync -f --force-sync --force-broken --no-clone-bundle --no-tags -j$(nproc --all)'''               }
+                dir("/mnt/los-mirror") {
+                    sh '''#!/bin/bash
+                       set -x
+                       source ~/.profile
+                       repo sync -f --force-sync --force-broken --no-clone-bundle -j$(nproc --all)
+                    '''
+                }
             }
         }
     }

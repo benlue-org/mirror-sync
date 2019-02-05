@@ -6,9 +6,15 @@ pipeline {
     stages {
         stage('Preparation') {
             steps {
-                echo 'Get Repo'
-                sh 'mkdir -p ~/bin'
-                sh 'curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo'
+                dir("/mnt/los-mirror") {
+                    sh '''#!/bin/bash
+                       set -x
+                       mkdir -p ~/bin
+                       curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+                       source ~/.profile
+                       repo init -u https://github.com/benlue-org/mirror --mirror                       
+                    '''
+                }
             }
         }
         stage('Repo Sync') {

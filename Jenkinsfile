@@ -10,8 +10,9 @@ pipeline {
                     sh '''#!/bin/bash
                        set -x
                        if [[ ! -e ~/bin/repo ]]; then
-                            mkdir -p ~/bin
+                            mkdir -p ~/bin                        
                             curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+                            chmod a+x ~/bin/repo
                        fi
                        source ~/.profile
                        #repo init -u https://github.com/benlue-org/mirror --mirror                       

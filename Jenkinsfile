@@ -25,7 +25,9 @@ pipeline {
                 dir("${MIRROR_PATH}") {
                     sh '''#!/bin/bash
                        set -x
-                       source ~/.profile
+                       source ~/.profile                   
+                       git config --global user.name BenJule
+                       git config --global user.email benlue@s3root.ovh
                        repo sync -f --force-sync --force-broken --no-clone-bundle -j$(nproc --all)
                     '''
                 }
